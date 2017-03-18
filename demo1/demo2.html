@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    <input type="text" v-model="fristName">+
+    <input type="text" v-model="lastName">=
+    <input type="text" v-model="fullName">
+    {{fristName}}+{{lastName}}={{fullName}}
+</div>
+<script src="vue.js"></script>
+<script>
+    window.onload=function () {
+      vm = new Vue({
+         el:'#div1',
+          data:{
+              fristName:'li',
+              lastName:'4',
+              fullName:'li 4'
+          },
+          watch:{
+               fristName:function (newVal,oldName) {
+                   console.log(oldName);
+                   this.fullName = newVal + ' ' +this.lastName;
+               },
+              lastName:function (newVal,oldName) {
+                  this.fullName = newVal + ' ' +this.lastName;
+              }
+          }
+        })
+    };
+
+</script>
+</body>
+</html>

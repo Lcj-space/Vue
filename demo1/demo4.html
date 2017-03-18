@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    姓名<input type="text" v-model="Choice.name">
+    年龄<input type="text" v-model="Choice.age">
+    <label>sex:</label>
+    <select v-model="Choice.sex">
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select>
+    <button @click="add">添加</button>
+    <div v-for="val in people">{{val.name}}</div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+       el:"#app",
+        data:{
+            Choice:{
+                name:'',
+                age: '',
+                sex:'男'
+            },
+//            people:[{name:'jim',age:14,sex:'女'}]
+            people:[]
+        },
+        methods:{
+            add:function () {
+            this.people.push(
+                this.Choice.name,
+                    this.Choice.age,
+                    this.Choice.sex
+            )
+            },
+            delet:function () {
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
