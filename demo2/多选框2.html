@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h1 {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>是否添加额外的费用</h1><input type="checkbox" name="" @click="add">
+    <div>
+        <li v-for="(val,index) in facility">
+            {{val.name}}{{val.price}}
+            <input type="checkbox" @click="set(val,index)">
+        </li>
+    </div>
+    <h1>订单费用信息</h1>
+    <ul>
+        <li v-for="va in feeFacility">
+            {{va.name}} <span>+</span> {{va.price}}
+        </li>
+    </ul>
+    总金额:{{total}}
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            facility: [],
+            feeFacility: [{name: '群利花园豪华型', price: 400}]
+//            isShow: true,
+//            much: [{money:'',day:'',total:''}],
+//            flag:true
+        },
+        computed: {
+            total: function () {
+                var t = 0;
+                this.feeFacility.forEach(function (val) {
+                    t += val.price
+                });
+                return t
+            }
+        },
+        methods: {
+            add: function () {
+                if (event.target.checked) {
+//                    this.facility=[{name:"床",},{},{}]
+                    this.facility = [{name: '床', price: 100}, {name: '沙发', price: 200}, {name: 'wifi', price: 300}];
+
+                } else {
+                    this.facility.splice(0);
+                    this.feeFacility.splice(1);
+                }
+            },
+            set: function (val,index) {
+                if (event.target.checked) {
+                    this.feeFacility.push(val);
+                }else {
+                    this.feeFacility.splice(index+1,1);
+                }
+            }
+//            add: function () {
+//                this.isShow = !this.isShow
+//            },
+//            bed: function () {
+//                if(this.flag){
+//                    this.much.push({
+//                        money:'￥400',
+//                        day:1,
+//                        total:'￥800'
+//                    })
+//                }
+//                this.flag = !this.flag
+//            },
+//            sofa: function () {
+//                if(this.flag){
+//                    this.much.push({
+//                        money:'￥100',
+//                        day:1,
+//                        total:'￥200'
+//                    })
+//                }
+//                this.flag = !this.flag
+//            },
+//            WiFi: function () {
+//                if(this.flag){
+//                    this.much.push({
+//                        money:'￥300',
+//                        day:1,
+//                        total:'￥600'
+//                    })
+//                }
+//                this.flag = !this.flag
+//            }
+        }
+    })
+</script>
+</body>
+</html>
