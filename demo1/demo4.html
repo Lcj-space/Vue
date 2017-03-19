@@ -14,31 +14,35 @@
         <option value="女">女</option>
     </select>
     <button @click="add">添加</button>
-    <div v-for="val in people">{{val.name}}</div>
+    <div v-for="(val,k,index) in people">
+        <li>{{k}}=>{{val.name}},{{val[k]}}=>{{val.age}},{{val[k]}}=>{{val.sex}}<button @click="delet(index)">delete</button></li>
+    </div>
 </div>
 <script src="vue.js"></script>
 <script>
     var vm = new Vue({
-       el:"#app",
-        data:{
-            Choice:{
-                name:'',
+        el: "#app",
+        data: {
+            Choice: {
+                name: '',
                 age: '',
-                sex:'男'
+                sex: '男'
             },
 //            people:[{name:'jim',age:14,sex:'女'}]
-            people:[]
+            people: [
+                {name:'l',age:'12',sex:'男'}
+            ]
         },
-        methods:{
-            add:function () {
-            this.people.push(
-                this.Choice.name,
-                    this.Choice.age,
-                    this.Choice.sex
-            )
+        methods: {
+            add: function () {
+                this.people.push({
+                    name:this.Choice.name,
+                    age:this.Choice.age,
+                    sex:this.Choice.sex
+                })
             },
-            delet:function () {
-
+            delet: function (idx) {
+               this.people.splice(idx,1);
             }
         }
     })
