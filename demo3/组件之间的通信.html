@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<template id="child">
+    <div>
+        <h3>子组件</h3>
+    </div>
+</template>
+<div id="app">
+    <child-com></child-com>
+</div>
+<script src="vue.js"></script>
+<script>
+    new  Vue({
+        el:'#app',
+        data:{},
+        components:{
+            'child-com':{
+                template:'#child'
+            }
+        }
+    })
+</script>
+</body>
+</html>

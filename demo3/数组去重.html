@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="content">
+    jack<input type="checkbox" value="jack" v-model="arr">
+    jim <input type="checkbox" value="jim" v-model="arr">
+    som <input type="checkbox" value="som" v-model="arr">
+    <span>{{arr | json}}</span>
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:'#content',
+        data:{
+            arr:[]
+        },
+        methods:{
+             isTure:function () {
+
+             }
+        }
+    })
+</script>
+</body>
+</html>
