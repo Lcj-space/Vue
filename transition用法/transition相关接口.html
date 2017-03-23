@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p {
+            width: 300px;
+            height: 300px;
+            background: red;
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: 1s all ease;
+        }
+
+        .fade-enter-active {
+            width: 300px;
+            height: 300px;
+            opacity: 1;
+        }
+
+        .fade-leave-active {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+
+        /*初始状态需后置编写*/
+        .fade-enter {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="点击隐藏" @click="iTrue=!iTrue">
+    <transition name="fade"
+                @before-enter="beforeEnter"
+                @enter="enter"
+                @after-enter="afterEnter"
+                @before-leave="beforeLeave"
+                @leave="leave"
+                @after-leave="afterLeave"
+    >
+        <p v-show="iTrue"></p>
+    </transition>
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            iTrue: false
+        },
+        methods: {
+            beforeEnter: function () {
+                console.log('进入之前')
+            },
+            enter: function () {
+                console.log('进入')
+            },
+            afterEnter: function (el) {
+                el.style.background='blue';
+                console.log('进入之后')
+            },
+            beforeLeave: function () {
+                console.log('离开之前')
+            },
+            leave: function () {
+                console.log('离开')
+            },
+            afterLeave: function (el) {
+                el.style.background='red';
+                console.log('离开之后')
+            }
+        }
+    })
+//    这样写的代码是在变幻的时候想添加js这样来写的
+</script>
+</body>
+</html>
