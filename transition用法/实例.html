@@ -10,23 +10,32 @@
             background: red;
         }
         .fade-enter-active,.fade-leave-active{
-            transition: 5s all ease;
+            transition: 1s all ease;
         }
-        .fade-enter{
-            width: 100px;
-            height: 100px;
-        }
+
         .fade-enter-active{
             width: 300px;
             height: 300px;
+            opacity: 1;
+        }
+        .fade-leave-active{
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+        /*初始状态需后置编写*/
+        .fade-enter{
+            width: 100px;
+            height: 100px;
+            opacity: 0;
         }
     </style>
 </head>
 <body>
 <div id="app">
-    <input type="button" value="点击隐藏" @click="isTrue=!isTrue">
+    <input type="button" value="点击隐藏" @click="iTrue=!iTrue">
     <transition name="fade">
-        <p v-show="isTrue"></p>
+        <p v-show="iTrue"></p>
     </transition>
 </div>
 <script src="vue.js"></script>
@@ -34,7 +43,7 @@
     new  Vue({
         el:'#app',
         data:{
-            isTrue:false
+            iTrue:false
         }
     })
 </script>
