@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(str){
+        var result = 0;
+        var reT = /[\+\-\*]/ig;
+        var arr1 = str.match(reT);
+        var arr2 = str.split(reT);
+        result += parseFloat(arr2[0]);
+
+        for(var i=0; i<arr1.length; i++){
+            switch(arr1[i]){
+                case '+':
+                    result += parseFloat(arr2[i+1]);
+                    break;
+                case '*':
+                    result *=  parseFloat(arr2[i+1]);
+                    break;
+                case '-':
+                    result -=  parseFloat(arr2[i+1]);
+                    break;
+            }
+        }
+        return result;
+
+    }
+   console.log(test('3+5*7*2')) ;
+</script>
+
+
+</body>
+</html>
