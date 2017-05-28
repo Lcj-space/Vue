@@ -1,16 +1,18 @@
 <template>
     <div id="app">
+        <FScreen v-show="loading"></FScreen>
+        <MyTop></MyTop>
         <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item v-for="(src,index) in img" >
+            <el-carousel-item v-for="(src,index) in img">
                 <img :src="src" alt="">
             </el-carousel-item>
         </el-carousel>
     </div>
 </template>
-<!--<div id="allmap" style="height: 230px;"></div>-->
-
 
 <script>
+    import FScreen from './components/loadFirstScreen.vue'
+    import MyTop from  './components/head.vue'
     export default {
         name: 'app',
         data () {
@@ -20,39 +22,31 @@
                     "src/assets/2.jpg",
                     "src/assets/3.jpg",
                     "src/assets/4.jpg"
-                ]
+                ],
+                loading: true
             }
+        },
+        components: {
+            FScreen,
+            MyTop
+        },
+        mounted(){
+            setTimeout(() => {
+                this.loading = false;
+            }, 1500)
         }
     }
 </script>
 
 <style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-
-    h1, h2 {
-        font-weight: normal;
-    }
-
-    ul {
-        list-style-type: none;
+    *{
+        margin: 0;
         padding: 0;
     }
+    #app {
 
-    li {
-        display: inline-block;
-        margin: 0 10px;
     }
 
-    a {
-        color: #42b983;
-    }
 
     .el-carousel__item h3 {
         color: #475669;
