@@ -25,7 +25,7 @@
     }
 
     #mask{
-        position: absolute;
+        position: fixed;
         top: 0;
         bottom:0;
         left: 0;
@@ -46,7 +46,7 @@
         height: 200px;
         align-items: center;
         justify-content: center;
-        position: absolute;
+        position: fixed;
         left: 50%;
         top: 50%;
         transform: translateX(-50%) translateY(-50%);

@@ -32,7 +32,12 @@
             line-height: 60px;
             background-color: #323b43;
         }
-
+        #top.topbar {
+            height: 60px;
+            position: fixed;
+            width: 100%;
+            z-index: 55;
+        }
         .container {
             font-size: 14px;
             width: 960px;
@@ -111,7 +116,7 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
             border: 1px solid #ddd;
             border-width: 0 1px 1px;
-            z-index: 6;
+            z-index: 55;
         }
 
         .topbar-nav-link .topbar-mobile-dropbox:before {
@@ -132,9 +137,7 @@
             width: 100%;
         }
 
-        #top.topbar {
-            height: 60px;
-        }
+
 
         #wechat:hover #show {
             display: block;
@@ -150,7 +153,7 @@
     <template>
         <div>
             <header id="top" class="topbar" role="navigation">
-                <div class="container clearfix"><h1><a href="/" hardjump="" class="topbar-logo icon-logo"><span>罗崇杰</span></a></h1>
+                <div class="container clearfix"><h1><a href="/" hardjump="" class="topbar-logo icon-logo"><span>Chongjie</span></a></h1>
                     <a href="/" hardjump="" class="topbar-item topbar-homepage focus">首页</a>
                     <a href="#" class="topbar-item">我的简历</a>
                     <nav class="topbar-nav"><a href="#" class="topbar-nav-link" target="_blank">
