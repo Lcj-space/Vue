@@ -4,7 +4,7 @@
             <div class="profile_social">
                 <h4>©2016-2017 罗崇杰 | chongjie</h4>
                 <a href="http://www.miitbeian.gov.cn/" target="_blank"><h6>湘ICP备17003525号</h6></a>
-                <h4 id="myTime">2017年5月29日 08:22:25 星期一</h4>
+                <h5 id="myTime">powered by 罗崇杰</h5>
                 <div class="clear"></div>
             </div>
         </div>

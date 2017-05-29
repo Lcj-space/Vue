@@ -4,7 +4,7 @@
         <MyTop></MyTop>
         <MyInfo></MyInfo>
         <div class="works">
-        <h2>我的作品</h2>
+        <h2>我的项目</h2>
         </div>
         <el-carousel :interval="4000" type="card" height="200px">
             <el-carousel-item v-for="(src,index) in img">
@@ -84,7 +84,7 @@
         width: 960px;
         margin: 0 auto;
         padding-top: 100px;
-        min-height: 300px;
+        min-height: 350px;
         /*background: #324057;*/
     }
 
