@@ -18,8 +18,8 @@
             <span>4 : 天天有课微信端开发</span><br>
         </div>
         <Skill></Skill>
-        <Footer></Footer>
-
+        <MyMap></MyMap>
+        <MyFooter></MyFooter>
     </div>
 </template>
 
@@ -28,7 +28,9 @@
     import MyTop from  './components/head.vue'
     import MyInfo from  './components/BasicInformation.vue'
     import Skill from  './components/Skill.vue'
-    import Footer from  './components/footer.vue'
+    import MyFooter from  './components/footer.vue'
+    import MyMap from  './components/map.vue'
+
 
     export default {
         name: 'app',
@@ -48,7 +50,8 @@
             MyTop,
             MyInfo,
             Skill,
-            Footer
+            MyFooter,
+            MyMap
         },
         mounted(){
             setTimeout(() => {

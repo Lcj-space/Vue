@@ -156,9 +156,9 @@
                 <div class="container clearfix"><h1><a href="/" hardjump="" class="topbar-logo icon-logo"><span>Chongjie</span></a></h1>
                     <a href="/" hardjump="" class="topbar-item topbar-homepage focus">首页</a>
                     <a href="#" class="topbar-item">我的简历</a>
-                    <nav class="topbar-nav"><a href="#" class="topbar-nav-link" target="_blank">
-                        <i class="el-icon-edit"></i>我的技能</a>
-                        <a href="#" class="topbar-nav-link" target="_blank"><i class="el-icon-star-on">收藏的文章</i></a>
+                    <nav class="topbar-nav">
+                        <a href="#Skill" class="topbar-nav-link"><i class="el-icon-edit"></i>我的技能</a>
+                        <!--<a href="#" class="topbar-nav-link" target="_blank"><i class="el-icon-star-on">收藏的文章</i></a>-->
                         <div id="wechat" class="topbar-nav-link"><i class="el-icon-message"></i>联系我
                 <div id="show" class="dropbox topbar-mobile-dropbox"><span>扫一扫联系我</span> <img
                                 src="src/assets/wechat.jpg" class="topbar-nav-qrcode"

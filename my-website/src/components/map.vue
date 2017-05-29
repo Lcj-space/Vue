@@ -1,34 +1,50 @@
 <template>
     <div>
-        <div id="allmap" style="height: 230px; width: 230px;float: left"></div>
+        <div class="map-description">
+            <h2>我在这里哟学术交流随时联系我^_^</h2>
+        </div>
+        <baidu-map class="bm-view"  :zoom="18" ak="9w3UCQ9fjQApIUUGxwUu2YDArBsGanOG" :center="center" >
+            <bm-marker :position="center" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
+                <bm-label content="我爱黑龙江大学" :labelStyle="labelStyle" :offset="offset"></bm-label>
+            </bm-marker>
+        </baidu-map>
     </div>
-</template>
-<script type="text/javascript">
-    // 百度地图API功能，根据浏览器自动定位
-    var map = new BMap.Map("allmap");
-    var point = new BMap.Point(126.65771686,45.77322463);//默认黑大位置
-    map.centerAndZoom(point, 18);
 
-    var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function (r) {
-        if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-            var mk = new BMap.Marker(r.point);
-            map.addOverlay(mk);
-            map.panTo(r.point);
-//            alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+</template>
+
+<script>
+    //按需引入百度地图中的模块，如实在main.js中全局调用的话就不用这样写了
+    import {BaiduMap,BmMarker,BmLabel} from 'vue-baidu-map'
+    export default {
+        components: {
+            BaiduMap,
+            BmMarker,
+            BmLabel
+        },
+        data () {
+            return {
+                //126.65771686,45.77322463
+                center: {lng: 126.62550686, lat: 45.71222463},
+                labelStyle:{ color: 'red', fontSize : '12px'},
+                offset:{width: -35 , height: 30}
+            }
         }
-        else {
-//            alert('failed' + this.getStatus());
-        }
-    }, {enableHighAccuracy: true})
-    //关于状态码
-    //BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
-    //BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
-    //BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
-    //BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
-    //BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
-    //BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
-    //BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
-    //BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
-    //BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+    }
 </script>
+
+<style scoped>
+    .bm-view {
+        width: 960px;
+        height: 300px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+    .map-description{
+        width: 960px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .map-description h2{
+        color: #58B7FF;
+    }
+</style>

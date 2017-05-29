@@ -3,8 +3,9 @@
         <div id="footer">
             <div class="profile_social">
                 <h4>©2016-2017 罗崇杰 | chongjie</h4>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank"><h6>湘ICP备17003525号</h6></a>
-                <h5 id="myTime">powered by 罗崇杰</h5>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank"><h5>湘ICP备17003525号</h5></a>
+                <h4>powered by 罗崇杰</h4>
+                <span>邮 箱 :&nbsp&nbsp<a class="focus" href="mailto:1367546524@qq.com">1367546524@qq.com</a></span><br>
                 <div class="clear"></div>
             </div>
         </div>
@@ -39,9 +40,22 @@
         line-height: 10px;
         font-size: 20px;
     }
-    .profile_social h6:hover {
+    .profile_social h5:hover {
         color: #F7BA2A;
         transition: all 0.3s;
         text-decoration: underline;
     }
+    .profile_social span{
+        display: inline-block;
+        margin-top: 5px;
+    }
+    .profile_social a {
+        color: slategrey;
+    }
+    .focus:hover {
+        color: #F7BA2A;
+        transition: all 0.3s;
+        text-decoration: underline;
+    }
+
 </style>
