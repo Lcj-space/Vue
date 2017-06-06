@@ -158,10 +158,10 @@
                 <h1><a href="/" class="topbar-logo icon-logo"><span>Chongjie</span></a></h1>
                 <div id="select">
                     <router-link class="topbar-item topbar-homepage focus" to="/home">首页</router-link>
-                    <router-link class="topbar-item" to="/foot">我的简历</router-link>
+                    <router-link class="topbar-item resume" to="/foot">我的简历</router-link>
                 </div>
                 <nav class="topbar-nav">
-                    <a href="#Skill" class="topbar-nav-link"><i class="el-icon-edit"></i>我的技能</a>
+                    <a href="#Skill" class="topbar-nav-link skill"><i class="el-icon-edit"></i>我的技能</a>
                     <div id="wechat" class="topbar-nav-link"><i class="el-icon-message"></i>联系我
                         <div id="show" class="dropbox topbar-mobile-dropbox"><span>扫一扫联系我</span> <img
                                 src="src/assets/wechat.jpg" class="topbar-nav-qrcode"
@@ -179,7 +179,13 @@
             if(!$(this).hasClass('focus')){
                 $(this).addClass('focus').siblings().removeClass('focus');
             }
+            if($(this).hasClass('resume')){
+                $('.skill').hide();
+            }else {
+                $('.skill').show();
+            }
         })
+
     }
 </script>
 
