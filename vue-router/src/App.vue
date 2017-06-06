@@ -2,7 +2,11 @@
     <div id="app">
 
         <FScreen v-show="loading"></FScreen>
+
         <MyTop></MyTop>
+        <div>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
