@@ -1,8 +1,8 @@
 import Home from './components/home.vue'
-import Ifooter from  './components/footer.vue'
+import about from  './components/aboutMe.vue'
 export default[
     {path: '/home', component: Home},
-    {path: '/foot', component: Ifooter},
+    {path: '/about', component: about},
     {path: '*', redirect: '/home'}
 ]
 

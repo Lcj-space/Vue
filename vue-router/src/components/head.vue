@@ -158,7 +158,7 @@
                 <h1><a href="/" class="topbar-logo icon-logo"><span>Chongjie</span></a></h1>
                 <div id="select">
                     <router-link class="topbar-item topbar-homepage focus" to="/home">首页</router-link>
-                    <router-link class="topbar-item resume" to="/foot">我的简历</router-link>
+                    <router-link class="topbar-item resume" to="/about">我的简历</router-link>
                 </div>
                 <nav class="topbar-nav">
                     <a href="#Skill" class="topbar-nav-link skill"><i class="el-icon-edit"></i>我的技能</a>

@@ -10,6 +10,7 @@
                     <div class="information">
                         <span>名 字 :&nbsp&nbsp罗崇杰</span><br>
                         <span>性 别 :&nbsp&nbsp男</span><br>
+                        <span>生 日 :&nbsp&nbsp1995.01.01</span><br>
                         <span>手 机 :&nbsp&nbsp15545956712</span><br>
                         <span>邮 箱 :&nbsp&nbsp<a class="focus" href="mailto:1367546524@qq.com">1367546524@qq.com</a></span><br>
                         <span>点 击 :&nbsp&nbsp<a class="focus" href="https://github.com/Lcj-space">GitHub</a></span><br>
