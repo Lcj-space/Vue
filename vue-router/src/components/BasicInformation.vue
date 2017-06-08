@@ -16,7 +16,6 @@
                         <span>点 击 :&nbsp&nbsp<a class="focus" href="https://github.com/Lcj-space">GitHub</a></span><br>
                         <span>地 址 : &nbsp&nbsp黑龙江大学A9</span>
                     </div>
-                    <!--<Map></Map>-->
                     <div class="my-img">
                         <img src="src/assets/myImg.jpg" alt="我的照片">
                     </div>
@@ -105,13 +104,3 @@
 
     }
 </style>
-
-<script>
-//    import Map from 'src/components/map.vue'
-//    export default{
-//        name:'#basicInformation',
-//        components: {
-//            Map
-//        }
-//    }
-</script>

@@ -8,6 +8,7 @@
                 <span>邮 箱 :&nbsp&nbsp<a class="focus" href="mailto:1367546524@qq.com">1367546524@qq.com</a></span><br>
                 <div class="clear"></div>
             </div>
+            <img src="src/assets/bottom.png" alt="">
         </div>
     </div>
 </template>
@@ -21,15 +22,27 @@
         text-decoration: none;
     }
     #footer{
-        min-height: 300px;
-        background-color: #13CE66;
+        position: relative;
+        height: 300px;
         overflow: hidden;
+        background:#00c1de;
         color: whitesmoke;
     }
+    #footer img{
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 0;
+        height: 300px;
+        z-index: 1;
+    }
     .profile_social{
-        width: 960px;
-        margin: 100px auto;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
         text-align: center;
+        z-index: 100;
     }
     .profile_social h6{
         color: slategrey;
