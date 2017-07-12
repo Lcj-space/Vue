@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+</head>
+<body>
+<template id="child"></template>
+
+<div id="app" :message="updateMessage">
+{{message}}
+</div>
+
+<script src="vue.js"></script>
+<script>
+
+    var vm  = new Vue({
+        el:'#app',
+        data:{
+            message : '123'
+        },
+        methods:{
+            updateMessage: function () {
+                this.message = '更新完成';
+                console.log(this.$el.textContent);
+                this.$nextTick(function () {
+                    console.log(this.$el.textContent)
+                })
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

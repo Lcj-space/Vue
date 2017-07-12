@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+</head>
+<body>
+<div id="app">
+{{message}}
+</div>
+
+<script src="vue.js"></script>
+<script>
+    var vm  = new Vue({
+        el:'#app',
+        data:{
+            message : '123'
+        }
+    });
+    vm.message = 'new message';
+    console.log(vm.$el.textContent === 'new message');
+    Vue.nextTick(function () {
+        console.log( vm.$el.textContent === 'new message')
+    })
+</script>
+</body>
+</html>
