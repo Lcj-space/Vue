@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>render函数</title>
+</head>
+<body>
+<div id="app">
+
+    <div>
+        <h1>{{nb}}</h1>
+        <anchored-heading :level="nb"></anchored-heading>
+    </div>
+
+</div>
+<template id="child">
+    <div>
+        <button @click="change">改变数据</button>
+        <h1>{{level}}</h1>
+    </div>
+
+</template>
+<script src="vue.js"></script>
+<script>
+    //    Vue.component('anchored-heading',{
+    //        template : '#child',
+    ////        render: function (createElement) {
+    ////            return createElement(
+    ////                'h' + this.level,
+    ////                this.$slots.default
+    ////            )
+    ////        },
+    ////        props : {
+    ////            level : {
+    ////                type: Number,
+    ////                required : true
+    ////            }
+    ////        }
+    //        props : ['level']
+    //    })
+    vm = new Vue({
+        el: '#app',
+        data: {
+            nb: 2
+        },
+        components: {
+            'anchored-heading': {
+                props: ['level'],
+                template: '#child',
+                methods: {
+                    change: function () {
+                        this.level = 3
+                    }
+                }
+            }
+        }
+    })
+    //    console.log(Vue.level);
+    //alert(Vue.level);
+</script>
+</body>
+</html>

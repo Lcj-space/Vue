@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot分发</title>
+</head>
+<body>
+<template id="child">
+    <div>
+        <h2>我是子组件的标题</h2>
+        <slot name="content">无内容时显示</slot>
+    </div>
+</template>
+<div id="box">
+    <child-c>
+        <div>有乐融</div>
+        <h2 slot="content">hhhh</h2>
+    </child-c>
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        components :{
+            'child-c' :{
+                template: '#child'
+            }
+        }
+    })
+</script>
+</body>
+</html>
