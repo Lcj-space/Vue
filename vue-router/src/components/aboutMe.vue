@@ -1,5 +1,5 @@
 <template>
-    <div class="myInfo">
+    <div id="myInfo">
         <img src="src/assets/myImg.jpg"/>
         <div class="base-info">
             <header>
@@ -15,7 +15,7 @@
                 <span>邮箱：&nbsp;1367546524@qq.com</span>
             </header>
             <div class="prize">
-                <span style="font-size: 16px">获奖荣誉：</span>
+                <span style="font-size: 16px ">获奖荣誉：</span>
                 <div class="line">
 
                 </div>
@@ -102,10 +102,8 @@
         </div>
     </div>
 </template>
-
-
 <style lang="scss" scoped>
-    .myInfo {
+    #myInfo {
         width: 1080px;
         margin: 0 auto;
         padding: 60px 0 60px 0;

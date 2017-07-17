@@ -7,7 +7,6 @@ import routes from './router.config.js'
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 const router = new VueRouter({
-    mode: 'history',
     routes
 });
 new Vue({
