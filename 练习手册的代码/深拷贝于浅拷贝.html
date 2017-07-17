@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--深拷贝、浅拷贝：-->
+
+<!--浅拷贝：不会继续对对象里面的对象进行解析赋值-->
+<script>
+    function deepCopy(p, c) {
+
+        var c = c || {};
+
+        for (var i in p) {
+
+            c[i] = p[i];
+
+        }
+
+        return c;
+
+    }
+
+    console.log(deepCopy({
+        a:1,
+        b: function () {
+            console.log('ha')
+        }
+    },{c:1}));
+//    深拷贝：
+
+//    function deepCopy(p, c) {
+//
+//        var c = c || {};
+//
+//        for (var i in p) {
+//
+//            if (typeof p[i] === 'object') {
+//
+//                c[i] = (p[i].constructor === Array) ? [] : {};
+//
+//                deepCopy(p[i], c[i]);
+//
+//            } else {
+//
+//                c[i] = p[i];
+//
+//            }
+//
+//        }
+//
+//        return c;
+//
+//    }
+    function indexOf(arr, item) {
+        let h = arr.length;
+        for(let i  =0 ;i< h ;i++){
+            if (arr[i] == item){
+                return i;
+                continue
+            }
+        }
+
+    }
+    console.log(indexOf([1,2,3,4],3));
+</script>
+
+</body>
+</html>
