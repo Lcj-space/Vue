@@ -36,11 +36,10 @@
     }
     .box{
         display: flex;
+        padding-top: 50px;
+        justify-content: space-around;
     }
-    .el-progress{
-        flex: 1;
-        margin: 100px 20px 100px 20px;
-    }
+
     .el-progress:after{
         position: absolute;
         top:120%;
