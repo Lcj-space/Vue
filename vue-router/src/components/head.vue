@@ -96,7 +96,7 @@
         cursor: auto;
         display: none;
         width: 200px;
-        left: 7px;
+        left: 20px;
         line-height: 40px;
         color: #333;
         font-size: 16px;
