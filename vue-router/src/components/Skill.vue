@@ -25,7 +25,7 @@
     .container{
         width: 960px;
         margin: 0 auto;
-        min-height: 300px;
+        min-height: 377px;
         overflow: hidden;
         background: #1F2D3D;
         /*background: salmon;*/
