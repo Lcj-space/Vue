@@ -8,29 +8,29 @@
                 <span>性别：&nbsp;男</span>
                 <span>最高学历：&nbsp;本科</span>
                 <span>工作年限：&nbsp;1年</span>
-                <span>毕业时间：&nbsp;2018年</span>
+                <span>毕业时间：&nbsp;<time>2018</time>年</span>
                 <span>邮箱：&nbsp;1367546524@qq.com</span>
             </header>
             <div class="prize">
                 <h2 style="font-size: 16px ">获奖荣誉：</h2>
-                <span class="t-title"> 2015年</span>
+                <span class="t-title"> <time>2015年</time></span>
                 <p>
                     获校级二级奖学金、优秀贫困大学生三等奖学金
                 </p>
 
-                <span class="t-title"> 2016年</span>
+                <span class="t-title"> <time>2016年</time></span>
                 <p>
                     获CET-4、黑龙江大学物理知识竞赛一等奖、获校级三等奖学金、汽车驾驶证
 
                 </p>
-                <span class="t-title"> 2017</span>
+                <span class="t-title"> <time>2017</time></span>
                 <p>
                     获黑龙江大学移动开发三等奖
                 </p>
             </div>
             <div class="project-experience">
                 <h2 style="font-size: 16px">项目经历：</h2>
-                <span class="t-title"> 2017.05-至今</span><br>
+                <span class="t-title"><time>2017.05-至今</time></span><br>
                 <p>
                     项目名称: &nbsp; 时光漫步
                     <span class="row-blank"></span>
@@ -51,7 +51,7 @@
                     <span>项目即将参加全国创新创业大赛</span>
                 </p>
 
-                <span class="t-title"> 2017.02-2017.5</span><br>
+                <span class="t-title"> <time>2017.02-2017.5</time></span><br>
                 <p>
                     项目名称: &nbsp; 悦居短租
                     <span class="row-blank">
