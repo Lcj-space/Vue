@@ -13,62 +13,6 @@
     </div>
 </template>
 
-<style scoped>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    a{
-        text-decoration: none;
-    }
-    #footer{
-        position: relative;
-        height: 300px;
-        overflow: hidden;
-        background:#00c1de;
-        color: whitesmoke;
-    }
-    #footer img{
-        position: absolute;
-        left: 0;
-        width: 100%;
-        top: 0;
-        height: 300px;
-        z-index: 1;
-    }
-    .profile_social{
-        position: absolute;
-        top:50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        text-align: center;
-        z-index: 100;
-    }
-    .profile_social h6{
-        color: slategrey;
-    }
-    .profile_social a{
-        display: inline-block;
-        height: 10px;
-        line-height: 10px;
-        font-size: 20px;
-    }
-    .profile_social h5:hover {
-        color: #F7BA2A;
-        transition: all 0.3s;
-        text-decoration: underline;
-    }
-    .profile_social span{
-        display: inline-block;
-        margin-top: 5px;
-    }
-    .profile_social a {
-        color: slategrey;
-    }
-    .focus:hover {
-        color: #F7BA2A;
-        transition: all 0.3s;
-        text-decoration: underline;
-    }
-
+<style lang="scss" scoped>
+   @import "../assets/css/footer";
 </style>

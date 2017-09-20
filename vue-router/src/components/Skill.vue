@@ -25,7 +25,7 @@
     .container{
         width: 960px;
         margin: 0 auto;
-        min-height: 300px;
+        min-height: 377px;
         overflow: hidden;
         background: #1F2D3D;
         /*background: salmon;*/
@@ -36,11 +36,10 @@
     }
     .box{
         display: flex;
+        padding-top: 50px;
+        justify-content: space-around;
     }
-    .el-progress{
-        flex: 1;
-        margin: 100px 20px 100px 20px;
-    }
+
     .el-progress:after{
         position: absolute;
         top:120%;

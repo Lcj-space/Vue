@@ -12,7 +12,8 @@
                         <span>性 别 :&nbsp&nbsp男</span><br>
                         <span>生 日 :&nbsp&nbsp1995.01.01</span><br>
                         <span>手 机 :&nbsp&nbsp15545956712</span><br>
-                        <span>邮 箱 :&nbsp&nbsp<a class="focus" href="mailto:1367546524@qq.com">1367546524@qq.com</a></span><br>
+                        <span>邮 箱 :&nbsp&nbsp<a class="focus"
+                                                href="mailto:1367546524@qq.com">1367546524@qq.com</a></span><br>
                         <span>点 击 :&nbsp&nbsp<a class="focus" href="https://github.com/Lcj-space">GitHub</a></span><br>
                         <span>地 址 : &nbsp&nbsp黑龙江大学A9</span>
                     </div>
@@ -20,7 +21,6 @@
                         <img src="src/assets/myImg.jpg" alt="我的照片">
                     </div>
                 </div>
-
                 <div class="about-me">
                     <h3>自我评价</h3>
                     <p>
@@ -32,75 +32,6 @@
     </div>
 </template>
 
-<style scoped>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    #basic-information {
-        width: 100%;
-        background-color: #324057;
-        padding-top: 75px;
-    }
-
-    .comment {
-        width: 960px;
-        margin: 0 auto;
-        overflow: hidden;
-        min-height: 450px;
-    }
-     .comment-top{
-         width: 100%;
-         overflow: hidden;
-     }
-    .comment span, .comment a {
-        color: #F9FAFC;
-    }
-    .comment .focus{
-        color: #13CE66;
-    }
-    .comment a:hover {
-        color: #F7BA2A;
-        transition: all 0.3s;
-        text-decoration: underline;
-    }
-
-    .information {
-        float: left;
-        padding: 50px 0;
-    }
-
-    .my-img {
-        margin: 50px 0;
-        float: right;
-        height: 140px;
-        width: 140px;
-        border-radius: 50%;
-        overflow: hidden;
-    }
-
-    .my-img img {
-        width: 140px;
-        height: 140px;
-    }
-    .about-me {
-        float: left;
-        overflow: hidden;
-    }
-    .about-me h3{
-        color: #1F2D3D;
-    }
-    .about-me p{
-        margin-top: 20px;
-        color: whitesmoke;
-    }
-    .show h2{
-        color: #1F2D3D;
-
-    }
+<style lang="scss" scoped>
+    @import "../assets/css/basicInformation";
 </style>
