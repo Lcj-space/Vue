@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     *
+     * @author ss.feng@ hongqi.gan@
+     */
+    var fs = require("fs");
+    var path = require("path");
+    var baseUri = cwd;
+
+    //=================================================
+
+    // 详细请看http://wiki.corp.qunar.com/pages/viewpage.action?pageId=67544710
+    // 自定义定制后端想要的目录和文件
+    // fekit.config
+    // "refs":{
+    //     "cp": ["view", "ver"],
+    //     "sh": "./auto.js"
+    // }
+    //后端目录结构
+    // main
+    // 1---webapp
+    // 1.1---include
+    // 1.1.1---ver
+    // 1.2---view
+    var config = {
+        personalDir: true,//bds暂不支持自定义目录则设为不自定义目录。只过滤
+        package:"webapp",
+        fromTo:[//基目录是fekit.config的目录
+            {
+                fr:"refs/src/html/my",
+                to:"/vm/page/user/my/",
+                pe:["vm"]   //perrsonal extendname需要保留文件的后缀类型,
+            },{
+                fr:"refs/src/html",
+                to:"/WEB-INF/vm/page",
+                pe:["vm"]   //perrsonal extendname需要保留文件的后缀类型,
+            },{
+                /**
+                 * include/vip => 会员中心的include文件夹
+                 */
+                fr: "src/html/include",
+                to: "/vm/include/",
+                pe: ["vm"]
+            },{
+                /**
+                 * include/vip => 会员中心的include文件夹
+                 */
+                fr: "src/html/include",
+                to: "/WEB-INF/vm/include/",
+                pe: ["vm"]
+            },{
+                /**
+                 * 会员中心代码
+                 */
+                fr: "src/html/vip",
+                to:"/vm/page/user/vip",
+                pe: ["vm"]
+            },{
+                fr:"refs/src/html/my/module",
+                to:"/vm/my/module",
+                pe:["vm"]   //perrsonal extendname需要保留文件的后缀类型,
+            }
+        ]
+    }
+
+
+    // fekit pack后将ver和vm目录view放到了webapp目录下
+
+    // fekit sync前在前端pom.xml文件中配置,
+    // 同步到开发机后webapp被打包zip到nexus仓库供后端同学mvn package
+    // <properties>
+    //     <qzz_files>webapp</qzz_files>
+    // </properties>
+
+
+    /*-------------下面的代码不用管亦可正常使用--------------*/
+    //现在还没有测试不在fekit中配置refs的情况发布那边会不会出错,
+    //也许这就是一个错误的想法。暂时先从refs的sh插入本脚本来实现。
+
+    //清除后端不需要的前端测试文件
+    function filter(dir, isNeed) {
+        var files = fs.readdirSync(dir);
+        files.forEach(function(f){
+            var curPorF = path.join(dir, f);//可能是dir或file
+
+            if(fs.statSync(curPorF).isDirectory()){
+                filter(curPorF, isNeed);
+            }else{
+                console.log("current file\t", f);
+                if(!isNeed(curPorF)){
+                    fs.unlinkSync(curPorF);
+                    console.log("removed\t", curPorF);
+                }
+            }
+        })
+    }
+
+    function isNeed(file, exts){
+        var n = path.extname(file);
+        for(var j = 0, le = exts.length; j < le; j++){
+            if(n == "." + exts[j]){
+                return true;
+            }
+        }
+        return false;
+    }
+    //TODO:用walk实现
+    function doPersonal(config, filter, isNeed){
+        var ft = config.fromTo, pg = config.package, pd = config.personalDir;
+        pg && file.rmrfSync(path.join(baseUri, pg));
+        for(var i = 0, len = ft.length; i < len; i++){
+            var m = ft[i], fp, tp; //to path
+            if(pd) {
+                fp = path.join(baseUri, m.fr);//from path
+                tp = path.join(baseUri, pg + (m.to || ""));
+                file.cprSync(fp, tp);//move
+            }else{
+                tp = path.join(baseUri, "refs/" + m.fr);//default
+            }
+            m.pe && filter(tp, function(file){
+                return isNeed(file, m.pe);
+            });
+        }
+        // pd && file.rmrfSync(refs_path);
+        //file.rmrfSync(path.join(baseUri, "ver"));
+    }
+    //=================================================
+
+
+    /**
+     * 匹配所有的.css 文件 /"([^"<>]+)(\.css@VERSION)([^"<>]*)"/ig
+     * 基于我们的css@VERSION的特点正则可以简化为:
+     * /"([^"<>]+)(\@VERSION.css)"/ig
+     * 相应地，js正则为
+     * /"([^"<>]+)(\@VERSION.js)"/ig
+     *
+     * 1. 找到html
+     * 2. 根据@VERSION特征,分辨后缀是css还是js，根据@分割得到文件名
+     * 3. 找到html对应的ver文件
+     *
+     *
+     */
+    function findHtmls(htmlDirPath){
+        htmlDirPath = htmlDirPath || "./m/member/asset/balance/";
+
+        if(!fs.existsSync(htmlDirPath)){
+            throw new Error("找不到这个HTML目录:" + htmlDirPath);
+        }
+
+        var htmlFilePaths = [];
+        var fileNames = fs.readdirSync(htmlDirPath);
+
+        var i = 0, len = fileNames ? fileNames.length : 0;
+        var htmlpath;
+        if(len){
+            for(; i < len; i ++){
+                htmlpath = path.join(htmlDirPath,fileNames[i]);
+                var stat = fs.statSync(htmlpath);
+                if(stat.isDirectory()){
+                    findHtmls(htmlpath);
+                }else if(stat.isFile()){
+                    var extname = path.extname(fileNames[i]);
+                    var basename = path.basename(fileNames[i],extname);
+
+                    htmlFilePaths.push({
+                        dir : htmlDirPath,
+                        name : fileNames[i],
+                        path : htmlpath,
+                        basename : basename,
+                        extname : extname,
+                        cssExtname : ".css.ver",
+                        jsExtname : ".js.ver"
+                    });
+                }
+            }
+        }
+        console.log('>>>> all html file to process <<<<');
+        console.log(JSON.stringify(htmlFilePaths));
+        return htmlFilePaths;
+    }
+
+    function findHtmlFileCssVer(htmlFile){
+        var dirs = ["./ver/yo/usage/page/", "./ver/styles/passport/"];
+        var cssVerFilePath;
+        var ver;
+        dirs.forEach(function (val, key) {
+            cssVerFilePath = path.join(val, htmlFile.cssName + htmlFile.cssExtname);
+            if(fs.existsSync(val)) {
+                if(fs.existsSync(cssVerFilePath)){
+                    ver = fs.readFileSync(cssVerFilePath, "utf-8");
+                    console.log('==============' + cssVerFilePath)
+                }
+            }
+        })
+
+        if(ver){
+            return ver;
+        }
+        throw new Error("找不到HTML文件(" + JSON.stringify(htmlFile) + ")对应的CSS版本号目录:" + cssVerFilePath);
+    }
+
+    function findHtmlFileJsVer(htmlFile){
+        var jsVerFileDir = "./ver/scripts";
+
+        if(!fs.existsSync(jsVerFileDir)){
+            throw new Error("找不到这个js版本号目录:" + jsVerFileDir);
+        }
+
+        var jsVerFilePath = [];
+
+        htmlFile.jsName.forEach(function(name) {
+            jsVerFilePath.push(path.join(jsVerFileDir,name + htmlFile.jsExtname));
+        });
+
+        var ver = [];
+
+        jsVerFilePath.forEach(function(path) {
+            if (!fs.existsSync(path)) {
+                throw new Error("找不到HTML文件(" + JSON.stringify(htmlFile)
+                    + ")对应的JS版本号目录:" + path);
+            }
+
+            ver.push(fs.readFileSync(path, "utf-8"));
+        });
+
+        return ver;
+    }
+
+    function processHtmlFileContent(htmlFile){
+        var content = fs.readFileSync(htmlFile.path, "utf-8");
+        // content = content.replace(/([^\/]+)@VERSION.js/g,
+        // 		htmlFile.jsName + "@" + htmlFile.jsVer + ".js");
+        htmlFile.jsName.forEach(function(js,i) {
+            var _js = js + "@" + htmlFile.jsVer[i] + ".js";
+            js = js + "@VERSION.js";
+            content = content.replace(js,_js);
+        });
+        content = content.replace(/([^\/]+)@VERSION.css/g,
+            htmlFile.cssName + "@" + htmlFile.cssVer + ".css");
+        htmlFile.content = content;
+        console.log('process : ' + htmlFile.path);
+        fs.writeFileSync(htmlFile.path, content, "utf-8");
+    }
+
+
+    function updateVersionLinks(filePaths){
+        //1.找到所有的html
+        var htmlFiles = findHtmls(filePaths);
+        var i = 0, len = htmlFiles ? htmlFiles.length : 0;
+        if(len){
+            for(; i < len; i ++){
+                var htmlFile = htmlFiles[i];
+                var content = fs.readFileSync(htmlFile.path, "utf-8");
+
+                //3.找到文件名字
+                // var jsName = content.match(/([^\/]+)@VERSION.js/g);
+                // var cssName = content.match(/([^\/]+)@VERSION.css/g);
+
+                //3.1 找到文件名字
+                var jsName = content.match(/prd\/scripts\/(.*)@VERSION.js/g);
+                if (jsName) {
+                    jsName = jsName.map(function(js) {
+                        return js.replace("prd/scripts/","")
+                    });
+                }
+                var cssName = content.match(/([^\/]+)@VERSION.css/g);
+
+                //2.找到对应的版本文件
+                if(jsName && jsName.length){
+                    jsName = jsName.map(function(name) {
+                        return name.split('@')[0];
+                    });
+                    htmlFile.jsName = jsName;
+                    var jsVer = findHtmlFileJsVer(htmlFile);
+                    htmlFile.jsVer = jsVer;
+                }
+                if(cssName && cssName.length){
+                    cssName = cssName[0].split('@')[0];
+                    htmlFile.cssName = cssName;
+                    var cssVer = findHtmlFileCssVer(htmlFile);
+                    htmlFile.cssVer = cssVer;
+                }
+                //4.替换以及回写
+                if(htmlFile.jsName || htmlFile.cssName){
+                    processHtmlFileContent(htmlFile);
+                }
+            }
+        }
+    }
+
+
+
+    console.log("拷贝文件到webapp下， 开始===========================");
+    doPersonal(config, filter, isNeed);
+    console.log("拷贝文件到webapp下， 结束===========================");
+
+
+    console.log("===========================");
+    console.log("===vm静态文件版本号工具===");
+    console.log("=========v 1.0.0===========");
+    console.log("===========================");
+
+    updateVersionLinks("./webapp/vm/page/user/my/");
+    updateVersionLinks("./webapp/WEB-INF/vm/page/fingerprintoritocol/");
+    updateVersionLinks("./webapp/WEB-INF/vm/page/my/");
+    updateVersionLinks("./webapp/WEB-INF/vm/page/securityquestions/");
+    updateVersionLinks("./webapp/WEB-INF/vm/page/");
+    updateVersionLinks("./webapp/vm/page/user/vip/");
+    updateVersionLinks("./webapp/WEB-INF/vm/page/vip/");
+</script>
+</body>
+</html>
